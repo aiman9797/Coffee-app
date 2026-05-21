@@ -4,6 +4,35 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useProducts } from '../../hooks/useProducts';
 
+// ✅ MOVED OUTSIDE COMPONENT - ye sirf ek baar banenge
+const baristaImages = [
+  "https://randomuser.me/api/portraits/women/68.jpg",
+  "https://randomuser.me/api/portraits/men/32.jpg",
+  "https://randomuser.me/api/portraits/women/45.jpg",
+  "https://randomuser.me/api/portraits/men/75.jpg",
+  "https://randomuser.me/api/portraits/women/22.jpg",
+  "https://randomuser.me/api/portraits/men/91.jpg"
+];
+
+const specialties = [
+  { name: "Espresso Master", icon: "⚡", description: "Expert in pulling perfect espresso shots", years: 8 },
+  { name: "Latte Art Specialist", icon: "🎨", description: "Creates beautiful latte art designs", years: 6 },
+  { name: "Cold Brew Expert", icon: "❄️", description: "Specializes in cold brew techniques", years: 5 },
+  { name: "Pour Over Professional", icon: "☕", description: "Master of pour over methods", years: 7 },
+  { name: "Coffee Roaster", icon: "🔥", description: "Expert in roasting profiles", years: 10 },
+  { name: "French Press Master", icon: "🇫🇷", description: "French press specialist", years: 4 }
+];
+
+const certifications = [
+  "SCA Certified Barista",
+  "Coffee Quality Institute Certified",
+  "Latte Art Championship 2023",
+  "Brewing Professional Certificate",
+  "Coffee Roasting Masterclass"
+];
+
+const languages = ["English", "Hindi", "Spanish", "French", "Italian", "Arabic"];
+
 const HomePage = () => {
   const navigate = useNavigate();
   const { getFeaturedProducts } = useProducts();
@@ -13,39 +42,7 @@ const HomePage = () => {
   
   const featuredProducts = getFeaturedProducts();
 
-  // High quality barista images
-  const baristaImages = [
-    "https://randomuser.me/api/portraits/women/68.jpg",
-    "https://randomuser.me/api/portraits/men/32.jpg",
-    "https://randomuser.me/api/portraits/women/45.jpg",
-    "https://randomuser.me/api/portraits/men/75.jpg",
-    "https://randomuser.me/api/portraits/women/22.jpg",
-    "https://randomuser.me/api/portraits/men/91.jpg"
-  ];
-
-  // Barista specialties with details
-  const specialties = [
-    { name: "Espresso Master", icon: "⚡", description: "Expert in pulling perfect espresso shots", years: 8 },
-    { name: "Latte Art Specialist", icon: "🎨", description: "Creates beautiful latte art designs", years: 6 },
-    { name: "Cold Brew Expert", icon: "❄️", description: "Specializes in cold brew techniques", years: 5 },
-    { name: "Pour Over Professional", icon: "☕", description: "Master of pour over methods", years: 7 },
-    { name: "Coffee Roaster", icon: "🔥", description: "Expert in roasting profiles", years: 10 },
-    { name: "French Press Master", icon: "🇫🇷", description: "French press specialist", years: 4 }
-  ];
-
-  // Certifications
-  const certifications = [
-    "SCA Certified Barista",
-    "Coffee Quality Institute Certified",
-    "Latte Art Championship 2023",
-    "Brewing Professional Certificate",
-    "Coffee Roasting Masterclass"
-  ];
-
-  // Languages spoken
-  const languages = ["English", "Hindi", "Spanish", "French", "Italian", "Arabic"];
-
-  // Fetch barista data from API
+  // ✅ FIXED: Empty dependency array - sirf ek baar chalega
   useEffect(() => {
     const fetchBaristas = async () => {
       setLoadingBaristas(true);
@@ -101,7 +98,7 @@ const HomePage = () => {
     };
     
     fetchBaristas();
-  }, []);
+  }, []); // ✅ Empty array - sirf ek baar chalega
 
   const backgroundImageUrl = "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070";
 
